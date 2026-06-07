@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -9,14 +9,14 @@ import Contact from './pages/Contact';
 import './index.css';
 
 function ScrollToTop() {
-  const { pathname } = require('react-router-dom').useLocation();
+  const { pathname } = useLocation();
   React.useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
   return null;
 }
 
 export default function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <ScrollToTop />
       <Navbar />
       <main>
